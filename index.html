@@ -3,33 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro:bit Bluetooth Web App</title>
+    <title>Remote Control Microbit</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts for Modern Look -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Micro:bit Bluetooth Web App</h1>
+        <h1>Remote Control Microbit</h1>
         <div id="status" class="status disconnected">Nicht verbunden</div>
         <button id="connectBtn" class="btn primary">Mit Micro:bit verbinden</button>
-        <div class="controls">
-            <button id="sendA" class="btn">Sende A</button>
-            <button id="sendB" class="btn">Sende B</button>
-            <button id="sendC" class="btn">Sende C</button>
-        </div>
-        <div class="data-section">
-            <h2 style="font-family:'Montserrat',Arial,sans-serif;font-size:1.18rem;color:#6366f1;margin-bottom:10px;letter-spacing:0.5px;">Empfangene Daten</h2>
-            <div class="data-field">
-                <label style="font-weight:500;">Letzte Nachricht:</label>
-                <span id="receivedData">-</span>
+        <div class="remote-container">
+            <div class="remote-row">
+                <button id="btn-forward" class="remote-btn">&#9650;</button>
+            </div>
+            <div class="remote-row">
+                <button id="btn-left" class="remote-btn">&#9664;</button>
+                <button id="btn-stop" class="remote-btn stop">&#9632;</button>
+                <button id="btn-right" class="remote-btn">&#9654;</button>
+            </div>
+            <div class="remote-row">
+                <button id="btn-backward" class="remote-btn">&#9660;</button>
             </div>
         </div>
-        <div id="debugInfo" style="margin-top: 1em;"></div>
+        <div class="data-section stylish-data">
+            <div class="data-icon"><svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#6366f1"/><path d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="data-content">
+                <div class="data-label">Letzte Nachricht</div>
+                <div class="data-value" id="receivedData">-</div>
+            </div>
+        </div>
+        <button id="toggleDebug" class="debug-toggle" title="Debugfenster ein-/ausblenden">🐞</button>
+        <div id="debugModal" class="debug-modal">
+            <div class="debug-modal-content">
+                <div class="debug-header">Debug-Ausgabe <button id="closeDebug" title="Schließen">&times;</button></div>
+                <div id="debugInfo" class="debug-content"></div>
+            </div>
+        </div>
     </div>
-    <footer style="margin-top:32px;text-align:center;color:#64748b;font-size:0.98em;opacity:0.85;letter-spacing:0.2px;">
-        <span style="font-family:'Montserrat',Arial,sans-serif;">micro:bit Web Bluetooth UART &mdash; <span style="color:#6366f1;">Cascade Edition</span></span>
-    </footer>
     <script src="app.js"></script>
 </body>
 </html>

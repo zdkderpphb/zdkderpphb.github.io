@@ -6,11 +6,28 @@ let device, server, uartService, txChar, rxChar;
 
 const statusEl = document.getElementById('status');
 const connectBtn = document.getElementById('connectBtn');
-const sendA = document.getElementById('sendA');
-const sendB = document.getElementById('sendB');
-const sendC = document.getElementById('sendC');
+const btnForward = document.getElementById('btn-forward');
+const btnBackward = document.getElementById('btn-backward');
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
+const btnStop = document.getElementById('btn-stop');
 const receivedData = document.getElementById('receivedData');
 const debugInfo = document.getElementById('debugInfo');
+
+// Debug Modal
+const debugModal = document.getElementById('debugModal');
+const toggleDebug = document.getElementById('toggleDebug');
+const closeDebug = document.getElementById('closeDebug');
+
+toggleDebug.addEventListener('click', () => {
+  debugModal.classList.add('open');
+});
+closeDebug.addEventListener('click', () => {
+  debugModal.classList.remove('open');
+});
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') debugModal.classList.remove('open');
+});
 
 function log(msg) {
   console.log(msg);
@@ -28,7 +45,7 @@ function setStatus(connected) {
     statusEl.className = 'disconnected';
     connectBtn.textContent = 'Mit Micro:bit verbinden';
   }
-  sendA.disabled = sendB.disabled = sendC.disabled = !connected;
+  btnForward.disabled = btnBackward.disabled = btnLeft.disabled = btnRight.disabled = btnStop.disabled = !connected;
 }
 
 async function connect() {
@@ -98,9 +115,11 @@ connectBtn.addEventListener('click', () => {
   }
 });
 
-sendA.addEventListener('click', () => sendValue('1'));
-sendB.addEventListener('click', () => sendValue('2'));
-sendC.addEventListener('click', () => sendValue('3'));
+btnForward.addEventListener('click', () => sendValue('1'));
+btnBackward.addEventListener('click', () => sendValue('2'));
+btnLeft.addEventListener('click', () => sendValue('3'));
+btnRight.addEventListener('click', () => sendValue('4'));
+btnStop.addEventListener('click', () => sendValue('5'));
 
 setStatus(false);
 log('micro:bit Web Bluetooth UART gestartet');
