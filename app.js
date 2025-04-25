@@ -98,9 +98,9 @@ connectBtn.addEventListener('click', () => {
   }
 });
 
-sendA.addEventListener('click', () => sendValue('A'));
-sendB.addEventListener('click', () => sendValue('B'));
-sendC.addEventListener('click', () => sendValue('C'));
+sendA.addEventListener('click', () => sendValue('1'));
+sendB.addEventListener('click', () => sendValue('2'));
+sendC.addEventListener('click', () => sendValue('3'));
 
 setStatus(false);
 log('micro:bit Web Bluetooth UART gestartet');
